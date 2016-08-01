@@ -30,6 +30,7 @@
     "cookie-parser": "^1.4.3",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
     "mongoose": "^4.5.7",
     "morgan": "^1.7.0",
     "promises": "^0.2.5",
@@ -42,6 +43,6 @@
     "node-sass": "^3.8.0",
     "nodemon": "^1.10.0",
     "npm-run-all": "^2.3.0",
-    "npm-scripts-watcher": "^1.0.2",
+    "npm-scripts-watcher": "^1.0.2"
   }
 }

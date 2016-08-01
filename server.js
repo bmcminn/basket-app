@@ -6,6 +6,7 @@ require('dotenv').load();
 // define utility instances
 var path            = require('path')
 ,   express         = require('express')
+,   hbs             = require('express-handlebars')
 ,   bodyParser      = require('body-parser')
 ,   cookieParser    = require('cookie-parser')
 ,   logger          = require('morgan')
@@ -24,6 +25,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({type: '*/*'}));
 
 app.use(cookieParser());
+
+
+// setup Express to use handlebars as runtime view engine
+app.engine(process.env.HBS_FILE_EXT, hbs(require('./config/handlebars')));
+
+app.set('views',        path.join(__dirname, process.env.HBS_VIEWS_DIR));
+app.set('view engine',  process.env.HBS_FILE_EXT);
+
 
 
 // define base locals
