@@ -3,12 +3,14 @@
 // load our environment configuration
 require('dotenv').load();
 
+
 // define utility instances
 var path            = require('path')
 ,   express         = require('express')
 ,   hbs             = require('express-handlebars')
 ,   bodyParser      = require('body-parser')
 ,   cookieParser    = require('cookie-parser')
+,   mongoose        = require('mongoose')
 ,   logger          = require('morgan')
 ,   pkg             = require('./package.json')
 ;
@@ -27,12 +29,16 @@ app.use(bodyParser.json({type: '*/*'}));
 app.use(cookieParser());
 
 
+// connect to mongo DB instance
+mongoose.connect(`mongodb://${process.env.MONGO_USER_SN}:${process.env.MONGO_USER_PW}@${process.env.MONGO_DB_LOCATION}`);
+var db = mongoose.connection;
+
+
 // setup Express to use handlebars as runtime view engine
 app.engine(process.env.HBS_FILE_EXT, hbs(require('./config/handlebars')));
 
 app.set('views',        path.join(__dirname, process.env.HBS_VIEWS_DIR));
 app.set('view engine',  process.env.HBS_FILE_EXT);
-
 
 
 // define base locals
@@ -46,11 +52,9 @@ app.locals.site = {
 app.use('/public', express.static(process.env.EXPRESS_STATIC));
 
 
-// TODO: replace with actual routes
-// assign our routes middlewares
-var routes = require('./routes');
-
-app.use('/', routes.home);
+// establish our routes
+var autoroute = require('express-autoroute');
+autoroute(app, require('./config/autoroute'));
 
 
 // cactch 404 and forward err handler
