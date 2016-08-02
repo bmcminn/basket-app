@@ -7,11 +7,33 @@
 </head>
 <body>
 
+    {{> heading }}
+
     <h1>{{ site.title }}</h1>
 
     {{{ body }}}
 
     {{> foot }}
 
+
+    <script>
+        $(function(){
+
+            $('html').addClass('dom-loaded');
+
+            $doc = $(document);
+
+            $doc.on('click', '[role="logout"]', function(e) {
+                e.preventDefault();
+
+                axios.post('/logout')
+                    .then(function(res) {
+                        console.log(res);
+                        window.location = '/';
+                    })
+                    ;
+            });
+        });
+    </script>
 </body>
 </html>

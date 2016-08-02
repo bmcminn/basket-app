@@ -9,6 +9,7 @@ var path            = require('path')
 ,   express         = require('express')
 ,   hbs             = require('express-handlebars')
 ,   stormpath       = require('express-stormpath')
+,   i18n            = require('i18n-express')
 ,   bodyParser      = require('body-parser')
 ,   cookieParser    = require('cookie-parser')
 ,   mongoose        = require('mongoose')
@@ -40,6 +41,10 @@ app.engine(process.env.HBS_FILE_EXT, hbs(require('./config/handlebars')));
 
 app.set('views',        path.join(__dirname, process.env.HBS_VIEWS_DIR));
 app.set('view engine',  process.env.HBS_FILE_EXT);
+
+
+// setup i18n support
+app.use(i18n(require('./config/i18n')));
 
 
 // define base locals

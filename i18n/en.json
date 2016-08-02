@@ -1,0 +1,8 @@
+{
+    "ABOUT":            "about"
+,   "LOGIN":            "login"
+,   "LOGOUT":           "logout"
+,   "MY_ACCOUNT":       "my account"
+,   "REGISTRATION":     "registration"
+,   "VERSION":          "version"
+}
