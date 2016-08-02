@@ -3,11 +3,15 @@
 var path            = require('path')
 ,   bodyParser      = require('body-parser')
 ,   csrf            = require('csrf')
-,   csrfProtection  = csrf({ cookie: true })
-,   parseForm       = bodyParser.urlencoded({ extended: false})
 ,   express         = require('express')
-,   router          = express.Router()
+,   stormpath       = require('express-stormpath');
 ;
+
+
+var router          = express.Router();
+var parseForm       = bodyParser.urlencoded({ extended: false});
+var csrfProtection  = csrf({ cookie: true });
+
 
 
 // get User model
@@ -84,18 +88,19 @@ var routes = {
 // define our autoroute object to designate the routes and their methods
 module.exports.autoroute = {
     get: {
-        '/users':     [ routes.getUsers ]
-    ,   '/users/:id': [ routes.getUserById ]
+        '/users':     [ stormpath.loginRequired, routes.getUsers ]
+    ,   '/users/:id': [ stormpath.loginRequired, routes.getUserById ]
     }
 
 ,   post: {
-        '/users':     [ routes.addUser ]
-    ,   '/users/:id': [ routes.updateUser ]
+        '/users':     [ stormpath.loginRequired, routes.addUser ]
+    ,   '/users/:id': [ stormpath.loginRequired, routes.updateUser ]
     }
 
-,   delete: {
-        '/users/:id': [ routes.deleteUser ]
-    }
+// NOTE: Deleting user models shouldn't be a publicly exposed API endpoint
+// ,   delete: {
+//         '/users/:id': [ stormpath.loginRequired, routes.deleteUser ]
+//     }
 };
 
 

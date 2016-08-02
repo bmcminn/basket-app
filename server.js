@@ -8,6 +8,7 @@ require('dotenv').load();
 var path            = require('path')
 ,   express         = require('express')
 ,   hbs             = require('express-handlebars')
+,   stormpath       = require('express-stormpath')
 ,   bodyParser      = require('body-parser')
 ,   cookieParser    = require('cookie-parser')
 ,   mongoose        = require('mongoose')
@@ -50,6 +51,10 @@ app.locals.site = {
 
 // setup node server to resolve static assets
 app.use('/public', express.static(process.env.EXPRESS_STATIC));
+
+
+// initialize stormpath middleware integration
+app.use(stormpath.init(app, require('./config/stormpath')));
 
 
 // establish our routes

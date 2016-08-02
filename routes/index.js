@@ -2,6 +2,8 @@
 var express     = require('express');
 var router      = express.router;
 
+var stormpath   = require('express-stormpath');
+
 
 // define our autoroute object to designate the routes and their methods
 var routes = {
@@ -33,11 +35,11 @@ var routes = {
 // SAUCE: https://github.com/stonecircle/express-autoroute#middlewares
 module.exports.autoroute = {
     get: {
-        '/':            [ routes.home ]
-    ,   '/about':       [ routes.about ]
-    ,   '/contact':     [ routes.contact ]
-    ,   '/privacy':     [ routes.privacy ]
-    ,   '/terms':       [ routes.terms ]
+        '/':            [ stormpath.getUser, routes.home ]
+    ,   '/about':       [ stormpath.getUser, routes.about ]
+    ,   '/contact':     [ stormpath.getUser, routes.contact ]
+    ,   '/privacy':     [ stormpath.getUser, routes.privacy ]
+    ,   '/terms':       [ stormpath.getUser, routes.terms ]
     }
 };
 

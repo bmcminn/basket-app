@@ -3,11 +3,14 @@
 var path            = require('path')
 ,   bodyParser      = require('body-parser')
 ,   csrf            = require('csrf')
-,   csrfProtection  = csrf({ cookie: true })
-,   parseForm       = bodyParser.urlencoded({ extended: false})
 ,   express         = require('express')
-,   router          = express.Router()
+,   stormpath       = require('express-stormpath');
 ;
+
+
+var router          = express.Router();
+var parseForm       = bodyParser.urlencoded({ extended: false});
+var csrfProtection  = csrf({ cookie: true });
 
 
 // get List model
@@ -85,17 +88,17 @@ var routes = {
 // define our autoroute object to designate the routes and their methods
 module.exports.autoroute = {
     get: {
-        '/lists':     [ routes.getLists ]
-    ,   '/lists/:id': [ routes.getListById ]
+        '/lists':     [ stormpath.loginRequired, routes.getLists ]
+    ,   '/lists/:id': [ stormpath.loginRequired, routes.getListById ]
     }
 
 ,   post: {
-        '/lists':     [ routes.addList ]
-    ,   '/lists/:id': [ routes.updateList ]
+        '/lists':     [ stormpath.loginRequired, routes.addList ]
+    ,   '/lists/:id': [ stormpath.loginRequired, routes.updateList ]
     }
 
 ,   delete: {
-        '/lists/:id': [ routes.deleteList ]
+        '/lists/:id': [ stormpath.loginRequired, routes.deleteList ]
     }
 };
 
