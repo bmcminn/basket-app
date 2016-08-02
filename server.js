@@ -22,6 +22,15 @@ var path            = require('path')
 var app = express();
 
 
+// define base local variables
+app.locals.site = {
+    title:      pkg.appName
+,   version:    pkg.version
+};
+
+app.locals.locale = i18n;
+
+
 // setup middlewares
 app.use(logger(process.env.NODE_ENV));
 
@@ -45,13 +54,6 @@ app.set('view engine',  process.env.HBS_FILE_EXT);
 
 // setup i18n support
 app.use(i18n(require('./config/i18n')));
-
-
-// define base locals
-app.locals.site = {
-    title:      pkg.appName
-,   version:    pkg.version
-};
 
 
 // setup node server to resolve static assets
