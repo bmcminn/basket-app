@@ -5,6 +5,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "postinstall": "node bin/bootstrap.js",
     "build": "",
     "css:dev": "node-sass src/sass/main.scss > public/css/main.css",
     "css:prod": "node-sass --output-style compressed src/sass/main.scss > public/css/main.css",
@@ -43,6 +44,7 @@
   },
   "devDependencies": {
     "debug": "^2.2.0",
+    "grunt": "^1.0.1",
     "node-sass": "^3.8.0",
     "nodemon": "^1.10.0",
     "npm-run-all": "^2.3.0",
