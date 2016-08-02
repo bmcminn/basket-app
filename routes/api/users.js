@@ -13,7 +13,6 @@ var parseForm       = bodyParser.urlencoded({ extended: false});
 var csrfProtection  = csrf({ cookie: true });
 
 
-
 // get User model
 var User = require(path.resolve(process.cwd(), 'models', 'user'));
 

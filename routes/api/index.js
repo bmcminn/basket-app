@@ -11,7 +11,8 @@ var routes = {
     root: function(req, res, next) {
         res.json({
             "type": "info"
-        ,   "message": "Welcome to the Basket API. To get started, visit our API docs: https://github.com/bmcminn/basket-app/blob/master/docs/api.md"
+        ,   "message": "Welcome to the Basket API. To get started, visit our API docs"
+        ,   "link": process.env.APP_DOCS_LINK
         });
     }
 

@@ -80,7 +80,6 @@ var routes = {
 };
 
 
-
 // NOTE: defining our route methods as an array allows us to define route specific middleware
 // SAUCE: https://github.com/stonecircle/express-autoroute#middlewares
 

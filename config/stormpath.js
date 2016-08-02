@@ -7,7 +7,7 @@ module.exports = {
 ,   expandApiKeys: true
 ,   expandCustomData: true
 ,   redirectUrl: '/dashboard'
-,   secretKey: process.env.STORMPATH_SERVER_APIKEY_SECRET
+,   secretKey: process.env.STORMPATH_SESSION_SECRET
 ,   postRegistrationHandler: function(account, req, res, next) {
         async.parallel(
             [
