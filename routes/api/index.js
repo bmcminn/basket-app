@@ -1,3 +1,4 @@
+'use strict';
 
 var express     = require('express');
 var router      = express.router;
@@ -9,6 +10,7 @@ var stormpath   = require('express-stormpath');
 var routes = {
 
     root: function(req, res, next) {
+
         res.json({
             "type": "info"
         ,   "message": "Welcome to the Basket API. To get started, visit our API docs"
@@ -23,7 +25,7 @@ var routes = {
 // SAUCE: https://github.com/stonecircle/express-autoroute#middlewares
 module.exports.autoroute = {
     get: {
-        '/':    [ stormpath.loginRequired, routes.root ]
+        '/':    [ stormpath.apiAuthenticationRequired, routes.root ]
     }
 };
 

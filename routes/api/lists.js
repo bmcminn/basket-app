@@ -4,7 +4,7 @@ var path            = require('path')
 ,   bodyParser      = require('body-parser')
 ,   csrf            = require('csrf')
 ,   express         = require('express')
-,   stormpath       = require('express-stormpath');
+,   stormpath       = require('express-stormpath')
 ;
 
 
@@ -87,17 +87,17 @@ var routes = {
 // define our autoroute object to designate the routes and their methods
 module.exports.autoroute = {
     get: {
-        '/lists':     [ stormpath.loginRequired, routes.getLists ]
-    ,   '/lists/:id': [ stormpath.loginRequired, routes.getListById ]
+        '/lists':     [ stormpath.apiAuthenticationRequired, routes.getLists ]
+    ,   '/lists/:id': [ stormpath.apiAuthenticationRequired, routes.getListById ]
     }
 
 ,   post: {
-        '/lists':     [ stormpath.loginRequired, routes.addList ]
-    ,   '/lists/:id': [ stormpath.loginRequired, routes.updateList ]
+        '/lists':     [ stormpath.apiAuthenticationRequired, routes.addList ]
+    ,   '/lists/:id': [ stormpath.apiAuthenticationRequired, routes.updateList ]
     }
 
 ,   delete: {
-        '/lists/:id': [ stormpath.loginRequired, routes.deleteList ]
+        '/lists/:id': [ stormpath.apiAuthenticationRequired, routes.deleteList ]
     }
 };
 

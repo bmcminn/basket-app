@@ -1,31 +1,38 @@
 
+'use strict';
+
+// TODO: look into setting things up more like this -- http://rok3.me/programming/automatically-including-routes-node-js-express-project/
+
 var express     = require('express');
-var router      = express.router;
+var router      = express.Router();
 
 var stormpath   = require('express-stormpath');
-
 
 // define our autoroute object to designate the routes and their methods
 var routes = {
 
-    home: function(req, res, next) {
+    home: function(req, res) {
         res.render('home');
     }
 
-,   about: function(req, res, next) {
+,   about: function(req, res) {
         res.render('about', { page: { title: 'about page' }});
     }
 
-,   contact: function(req, res, next) {
+,   contact: function(req, res) {
         res.render('contact', { page: { title: 'contact page' }});
     }
 
-,   privacy: function(req, res, next) {
+,   privacy: function(req, res) {
         res.render('privacy', { page: { title: 'privacy page' }});
     }
 
-,   terms: function(req, res, next) {
+,   terms: function(req, res) {
         res.render('terms', { page: { title: 'terms page' }});
+    }
+
+,   def: function(req, res) {
+        res.render('404');
     }
 
 };
@@ -40,6 +47,7 @@ module.exports.autoroute = {
     ,   '/contact':     [ stormpath.getUser, routes.contact ]
     ,   '/privacy':     [ stormpath.getUser, routes.privacy ]
     ,   '/terms':       [ stormpath.getUser, routes.terms ]
+    // ,   '/*':           [ stormpath.getUser, routes.default ]
     }
 };
 
