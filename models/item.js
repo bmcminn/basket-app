@@ -41,9 +41,13 @@ module.exports.getItemById = function(id, cb) {
 // Update specific Item
 module.exports.updateItem = function(id, item, cb) {
     var query = {_id: id};
+
     var update = {
         name: Item.name
     };
+
+    var options = {};
+
     Item.findOneAndUpdate(query, update, options, cb);
 };
 

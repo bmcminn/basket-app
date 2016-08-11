@@ -2,6 +2,11 @@ var mongoose = require('mongoose');
 
 
 var userSchema = mongoose.Schema({
+    id: {
+        type: String
+    ,   default: Date.now
+    ,   required: true
+    },
     username: {
         type: String
     ,   required: true
@@ -48,9 +53,13 @@ module.exports.getUserById = function(id, cb) {
 // Update specific User
 module.exports.updateUser = function(id, user, cb) {
     var query = {_id: id};
+
     var update = {
         name: User.name
     };
+
+    var options = {};
+
     User.findOneAndUpdate(query, update, options, cb);
 };
 
