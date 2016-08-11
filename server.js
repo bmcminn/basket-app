@@ -10,6 +10,7 @@ var path            = require('path')
 ,   hbs             = require('express-handlebars')
 ,   stormpath       = require('express-stormpath')
 ,   i18n            = require('i18n-express')
+,   i18nConfig      = require('./config/i18n')
 ,   bodyParser      = require('body-parser')
 ,   cookieParser    = require('cookie-parser')
 ,   mongoose        = require('mongoose')
@@ -26,9 +27,8 @@ var app = express();
 app.locals.site = {
     title:      pkg.appName
 ,   version:    pkg.version
+,   locales:    i18nConfig.siteLangs
 };
-
-app.locals.locale = i18n;
 
 
 // setup middlewares
