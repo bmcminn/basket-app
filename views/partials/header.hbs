@@ -1,0 +1,23 @@
+<div>
+    {{#if user}}
+        Hello, {{ user.givenName }}
+    {{/if}}
+
+
+    {{#if user }}
+        <a role="logout" href="/logout">{{ texts.LOGOUT }}</a>
+    {{else}}
+        <a role="login" href="/login">{{ texts.LOGIN }}</a>
+    {{/if}}
+
+
+    Choose your language:
+    <select role="lang-select">
+        <option value="">----</option>
+        {{#each site.locales }}
+            <option {{#ifval ../lang value=this }}selected{{/ifval}} data-link="?clang={{this}}" value="{{ this }}">{{prop ../texts this }}</option>
+        {{/each}}
+        {{!-- <li><a role="set_lang" class="{{#ifval lang value="de"}}active{{/ifval}}" href="?clang=de">German</a></li> --}}
+    </select>
+
+</div>
