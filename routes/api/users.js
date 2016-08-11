@@ -87,13 +87,13 @@ var routes = {
 // define our autoroute object to designate the routes and their methods
 module.exports.autoroute = {
     get: {
-        '/users':     [ stormpath.apiAuthenticationRequired, routes.getUsers ]
-    ,   '/users/:id': [ stormpath.apiAuthenticationRequired, routes.getUserById ]
+        '/users':     [ routes.getUsers ]
+    ,   '/users/:id': [ routes.getUserById ]
     }
 
 ,   post: {
-        '/users':     [ stormpath.apiAuthenticationRequired, routes.addUser ]
-    ,   '/users/:id': [ stormpath.apiAuthenticationRequired, routes.updateUser ]
+        '/users':     [ routes.addUser ]
+    ,   '/users/:id': [ routes.updateUser ]
     }
 
 // NOTE: Deleting user models shouldn't be a publicly exposed API endpoint

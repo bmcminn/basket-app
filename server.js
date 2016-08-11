@@ -32,7 +32,7 @@ app.locals.site = {
 
 
 // setup middlewares
-app.use(logger(process.env.NODE_ENV));
+app.use(logger(process.env.LOGGING_METHOD));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json({type: '*/*'}));
@@ -65,8 +65,10 @@ app.use(stormpath.init(app, require('./config/stormpath')));
 
 
 // establish our routes
+app.use('/api', stormpath.apiAuthenticationRequired);
 var autoroute = require('express-autoroute');
 autoroute(app, require('./config/autoroute'));
+
 
 
 // cactch 404 and forward err handler

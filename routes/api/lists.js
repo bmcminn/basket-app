@@ -87,17 +87,17 @@ var routes = {
 // define our autoroute object to designate the routes and their methods
 module.exports.autoroute = {
     get: {
-        '/lists':     [ stormpath.apiAuthenticationRequired, routes.getLists ]
-    ,   '/lists/:id': [ stormpath.apiAuthenticationRequired, routes.getListById ]
+        '/lists':     [ routes.getLists ]
+    ,   '/lists/:id': [ routes.getListById ]
     }
 
 ,   post: {
-        '/lists':     [ stormpath.apiAuthenticationRequired, routes.addList ]
-    ,   '/lists/:id': [ stormpath.apiAuthenticationRequired, routes.updateList ]
+        '/lists':     [ routes.addList ]
+    ,   '/lists/:id': [ routes.updateList ]
     }
 
 ,   delete: {
-        '/lists/:id': [ stormpath.apiAuthenticationRequired, routes.deleteList ]
+        '/lists/:id': [ routes.deleteList ]
     }
 };
 

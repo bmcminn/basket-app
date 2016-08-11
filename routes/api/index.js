@@ -25,7 +25,7 @@ var routes = {
 // SAUCE: https://github.com/stonecircle/express-autoroute#middlewares
 module.exports.autoroute = {
     get: {
-        '/':    [ stormpath.apiAuthenticationRequired, routes.root ]
+        '/':    [ routes.root ]
     }
 };
 
