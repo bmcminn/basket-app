@@ -57,7 +57,7 @@ app.use(i18n(require('./config/i18n')));
 
 
 // setup node server to resolve static assets
-app.use('/public', express.static(process.env.EXPRESS_STATIC));
+app.use(express.static(process.env.EXPRESS_STATIC_DIR));
 
 
 // initialize stormpath middleware integration
@@ -83,8 +83,10 @@ app.use(function(err, req, res, next) {
 // issue port address and start server
 app.set('port', process.env.PORT || 5000);
 
-app.listen(app.get('port'), function() {
-    console.log(`Server started on port ${app.get('port')}`);
+app.on('stormpath.ready', function() {
+    app.listen(app.get('port'), function() {
+        console.log(`Server started on port ${app.get('port')}`);
+    });
 });
 
 
