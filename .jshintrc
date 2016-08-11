@@ -1,0 +1,21 @@
+{
+    "curly":            true
+,   "esversion":        6
+,   "laxbreak":         true
+,   "laxcomma":         true
+,   "nocomma":          true
+,   "nonbsp":           true
+,   "nonew":            true
+,   "plusplus":         true
+,   "strict":           false
+,   "undef":            true
+
+,   "globals": {
+        "require":      true
+    ,   "module":       true
+    ,   "process":      true
+    ,   "__dirname":    true
+    ,   "console":      true
+    ,   "window":       true
+    }
+}
