@@ -8,9 +8,9 @@ var path            = require('path')
 ;
 
 
-var router          = express.Router();
-var parseForm       = bodyParser.urlencoded({ extended: false});
-var csrfProtection  = csrf({ cookie: true });
+// var router          = express.Router();
+// var parseForm       = bodyParser.urlencoded({ extended: false});
+// var csrfProtection  = csrf({ cookie: true });
 
 
 // get User model

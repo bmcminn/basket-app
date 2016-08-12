@@ -23,10 +23,6 @@ var routes = {
         res.render('contact', { page: { title: 'contact page' }});
     }
 
-,   privacy: function(req, res) {
-        res.render('privacy', { page: { title: 'privacy page' }});
-    }
-
 ,   terms: function(req, res) {
         res.render('terms', { page: { title: 'terms page' }});
     }
@@ -42,11 +38,10 @@ var routes = {
 // SAUCE: https://github.com/stonecircle/express-autoroute#middlewares
 module.exports.autoroute = {
     get: {
-        '/':            [ stormpath.getUser, routes.home ]
-    ,   '/about':       [ stormpath.getUser, routes.about ]
-    ,   '/contact':     [ stormpath.getUser, routes.contact ]
-    ,   '/privacy':     [ stormpath.getUser, routes.privacy ]
-    ,   '/terms':       [ stormpath.getUser, routes.terms ]
+        '/':                    [ stormpath.getUser, routes.home ]
+    ,   '/about':               [ stormpath.getUser, routes.about ]
+    ,   '/contact':             [ stormpath.getUser, routes.contact ]
+    ,   '/terms-and-privacy':   [ stormpath.getUser, routes.terms ]
     // ,   '/*':           [ stormpath.getUser, routes.default ]
     }
 };
