@@ -6,15 +6,15 @@ require('dotenv').load();
 
 // define utility instances
 var path            = require('path')
+,   bodyParser      = require('body-parser')
+,   cookieParser    = require('cookie-parser')
+,   mongoose        = require('mongoose')
+,   logger          = require('morgan')
 ,   express         = require('express')
 ,   hbs             = require('express-handlebars')
 ,   stormpath       = require('express-stormpath')
 ,   i18n            = require('i18n-express')
 ,   i18nConfig      = require('./config/i18n')
-,   bodyParser      = require('body-parser')
-,   cookieParser    = require('cookie-parser')
-,   mongoose        = require('mongoose')
-,   logger          = require('morgan')
 ,   pkg             = require('./package.json')
 ;
 
@@ -64,8 +64,10 @@ app.use(express.static(process.env.EXPRESS_STATIC_DIR));
 app.use(stormpath.init(app, require('./config/stormpath')));
 
 
-// establish our routes
+// apply apiAuthentication against all /api routes
 app.use('/api', stormpath.apiAuthenticationRequired);
+
+// establish our routes
 var autoroute = require('express-autoroute');
 autoroute(app, require('./config/autoroute'));
 

@@ -41,8 +41,11 @@ module.exports = {
 //---------------------------------------------------------------------------
 
 //     enableAccountVerification: false
-,   expandApiKeys: true
-,   expandCustomData: true
+,   expand: {
+        expandApiKeys: true
+    ,   customData: true
+    }
+
 // ,   redirectUrl: '/dashboard'
 ,   secretKey: process.env.STORMPATH_SESSION_SECRET
 
