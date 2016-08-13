@@ -4,7 +4,7 @@ var path    = require('path')
 
 
 var helpers = {};
-var files   = fs.expand(path.resolve(__dirname, '**.js'));
+var files   = fs.expand(path.join(__dirname, '**.js'));
 
 
 /**
@@ -12,15 +12,12 @@ var files   = fs.expand(path.resolve(__dirname, '**.js'));
  * NAME TO BE LOADED AND UTILIZED WITHIN YOUR HANDLEBARS TEMPLATES.
  */
 
-
 files.forEach(function(filepath) {
     if (!filepath.match('index.js')) {
-
-        var helperName = path.basename(filepath, '.js');
-
-        helpers[helperName] = require(filepath);
+        helpers[path.basename(filepath, '.js')] = require(filepath);
     }
 });
 
 
+// exports an object of named helper functions
 module.exports = helpers;
